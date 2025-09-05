@@ -1,0 +1,54 @@
+# PlayNexus Satellite Toolkit Requirements
+# Core scientific computing
+numpy>=1.24,<2.0
+scipy>=1.9,<2.0
+
+# Image processing
+scikit-image>=0.19,<1.0
+Pillow>=9.0,<11.0
+
+# Machine learning
+scikit-learn>=1.1,<2.0
+xgboost>=1.7,<2.0
+lightgbm>=4.0,<4.1
+
+# Deep learning (optional)
+tensorflow>=2.12,<3.0
+torch>=2.0,<3.0
+
+# Performance optimization
+dask>=2023.1,<2024.0
+numba>=0.57,<1.0
+cupy-cuda11x>=12.0,<13.0  # For NVIDIA GPU acceleration
+psutil>=5.9,<6.0
+joblib>=1.3,<2.0
+
+# Advanced visualization
+plotly>=5.15,<6.0
+seaborn>=0.12,<1.0
+folium>=0.14,<1.0
+tkcalendar>=1.6,<2.0
+
+# Geospatial processing
+rasterio>=1.3,<2.0
+rioxarray>=0.13,<1.0
+
+# Data handling
+pystac-client>=0.7,<0.8
+planetary-computer>=1.0,<1.1
+pystac>=1.7,<1.8
+requests>=2.28,<3.0
+
+# Geospatial data
+shapely>=2.0,<3.0
+geopandas>=0.12,<1.0
+
+# Visualization
+matplotlib>=3.5,<4.0
+
+# Utilities
+tqdm>=4.64,<5.0
+pandas>=1.5,<2.0
+
+# Optional for nicely handling GeoTIFF opening in JS viewer creation steps
+# (you don't need these to run the core processing locally)

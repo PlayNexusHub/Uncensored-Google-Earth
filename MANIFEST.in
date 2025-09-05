@@ -1,0 +1,26 @@
+include README.md
+include LICENSE
+include CHANGELOG.md
+include CONTRIBUTING.md
+include requirements.txt
+include requirements-dev.txt
+include pytest.ini
+include pyproject.toml
+include .gitignore
+
+recursive-include docs *
+recursive-include assets *
+recursive-include gee *.js
+recursive-include viewer *.html *.css *.js
+recursive-include gui *.py
+recursive-include scripts *.py
+recursive-include tests *.py
+
+global-exclude __pycache__
+global-exclude *.py[co]
+global-exclude *.so
+global-exclude .DS_Store
+global-exclude *.exe
+global-exclude *.zip
+global-exclude build/*
+global-exclude dist/*

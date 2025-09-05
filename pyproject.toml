@@ -1,0 +1,167 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "playnexus-satellite-toolkit"
+version = "1.1.0"
+authors = [
+    {name = "PlayNexus", email = "playnexushq@gmail.com"},
+]
+description = "A comprehensive, production-ready toolkit for satellite imagery analysis"
+readme = "README.md"
+license = {text = "Educational Use Only"}
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "License :: Other/Proprietary License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Scientific/Engineering :: GIS",
+    "Topic :: Scientific/Engineering :: Image Processing",
+    "Topic :: Education",
+]
+keywords = ["satellite", "imagery", "remote-sensing", "education", "gis", "ndvi", "landsat", "sentinel"]
+dependencies = [
+    "numpy>=1.21.0",
+    "rasterio>=1.3.0",
+    "rioxarray>=0.13.0",
+    "requests>=2.28.0",
+    "matplotlib>=3.5.0",
+    "scikit-image>=0.19.0",
+    "scikit-learn>=1.1.0",
+    "scipy>=1.9.0",
+    "pandas>=1.4.0",
+    "geopandas>=0.12.0",
+    "shapely>=1.8.0",
+    "Pillow>=9.0.0",
+    "tqdm>=4.64.0",
+    "pystac-client>=0.5.0",
+    "planetary-computer>=0.4.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=22.0.0",
+    "flake8>=5.0.0",
+    "mypy>=0.991",
+    "pre-commit>=2.20.0",
+    "types-requests>=2.28.0",
+    "types-Pillow>=9.0.0",
+]
+gui = [
+    "tkinter",
+]
+
+[project.urls]
+Homepage = "https://github.com/playnexus/satellite-toolkit"
+Documentation = "https://github.com/playnexus/satellite-toolkit/blob/main/README.md"
+Repository = "https://github.com/playnexus/satellite-toolkit.git"
+"Bug Tracker" = "https://github.com/playnexus/satellite-toolkit/issues"
+
+[project.scripts]
+playnexus-satellite = "playnexus_satellite_toolkit:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["gui*", "scripts*"]
+exclude = ["tests*", "build*", "dist*"]
+
+[tool.setuptools.package-data]
+"*" = ["*.md", "*.txt", "*.yml", "*.yaml", "*.json"]
+"assets" = ["*"]
+"docs" = ["*"]
+"gee" = ["*.js"]
+"viewer" = ["*.html", "*.css", "*.js"]
+
+[tool.black]
+line-length = 100
+target-version = ['py38']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.mypy]
+python_version = "3.8"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+disallow_incomplete_defs = true
+check_untyped_defs = true
+disallow_untyped_decorators = true
+no_implicit_optional = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_no_return = true
+warn_unreachable = true
+strict_equality = true
+
+[[tool.mypy.overrides]]
+module = [
+    "rasterio.*",
+    "rioxarray.*",
+    "matplotlib.*",
+    "sklearn.*",
+    "scipy.*",
+    "geopandas.*",
+    "shapely.*",
+    "pystac_client.*",
+    "planetary_computer.*",
+]
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra -q --strict-markers --strict-config"
+testpaths = ["tests"]
+python_files = ["test_*.py", "*_test.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "integration: marks tests as integration tests",
+    "unit: marks tests as unit tests",
+]
+
+[tool.coverage.run]
+source = ["gui", "scripts"]
+omit = [
+    "*/tests/*",
+    "*/test_*",
+    "*/__pycache__/*",
+    "*/build/*",
+    "*/dist/*",
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __repr__",
+    "if self.debug:",
+    "if settings.DEBUG",
+    "raise AssertionError",
+    "raise NotImplementedError",
+    "if 0:",
+    "if __name__ == .__main__.:",
+    "class .*\\bProtocol\\):",
+    "@(abc\\.)?abstractmethod",
+]
